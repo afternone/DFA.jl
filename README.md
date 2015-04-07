@@ -12,12 +12,9 @@ To install the package:
 We'll perform a DFA and estimates the scaling exponent for a random time series.
 ```
 using DFA
-using PyPlot
 
 x = rand(10000)
 n, Fn = dfa(x)
-ployfit(log10(n), log10(Fn))  # the last element is scaling exponent
-loglog(n, Fn, "o")
 ```
 You can also specify the following key arguments:
 
@@ -34,7 +31,14 @@ function. Default: `2`.
 To perform a DFA on x with boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5:
 ```
 n1, Fn1 = dfa(x, boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5)
-polyfit(log10(n1), log10(Fn1))  # the last element is scaling exponent
+```
+To estimates the scaling exponent:
+```
+intercept, α = polyfit(log10(n1), log10(Fn1))  # α is scaling exponent
+```
+To plot F(n)~n:
+```
+using PyPlot
 loglog(n1, Fn1, "o")
 ```
 
