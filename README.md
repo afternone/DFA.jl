@@ -29,7 +29,7 @@ effect of generating less biased results. Default: `0`.
 * **boxratio**: the ratio of successive boxes. This argument is used as an input to the logScale
 function. Default: `2`.
 
-To perform DFA on x with boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5:
+To perform a DFA on x with boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5:
 ```
 L1, FL1 = dfa(x, boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5)
 polyfit(log10(L1), log10(FL1))
