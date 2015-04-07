@@ -22,7 +22,7 @@ function integrate1{T<:Real}(x::AbstractArray{T})
     for i=1:N
         sumx += x[i]
         meanx += sumx/i
-        y[i] = sumx
+        y[i] = sumx - meanx
     end
     y
 end
