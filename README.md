@@ -39,7 +39,13 @@ intercept, α = polyfit(log10(n1), log10(Fn1))  # α is scaling exponent
 To plot F(n)~n:
 ```
 using PyPlot
+
 loglog(n1, Fn1, "o")
+```
+To plot F(n)~n with fitted line:
+```
+logn1 = log10(n1)
+plot(logn1, log10(Fn1), "o", logn1, α.*logn1.+intercept)
 ```
 
 ## References
