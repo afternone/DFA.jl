@@ -1,17 +1,47 @@
-# Detrended fluctuation analysis (DFA)
+# DFA.jl: Detrended fluctuation analysis (DFA) in Julia
 =======
-## Description
-Performs a detrended fluctuation analysis (DFA) and estimates the scaling exponent from the results.
-DFA is used to characterize long memory dependence in stochastic fractal time series.
+## Introduction
+The DFA package provides tools to perform a detrended fluctuation analysis (DFA) and estimates the scaling exponent from the results. DFA is used to characterize long memory dependence in stochastic fractal time series.
 
-## Usage
-`dfa(x, order=1, overlap=0, boxmax=div(length(x), 2), boxmin=2*(order+1), boxratio=2)`
+## Install
+`Pkg.clone("git@github.com:afternone/DFA.jl.git")`
 
-## Arguments
-* **x**:  a vector containing a uniformly-sampled real-valued time series.
-* **order**:  the order of the polynomial fit. Default: 1.
+## Usage Examples
+We'll perform a DFA and estimates the scaling exponent for a random time series.
+```
+using DFA
+using PyPlot
+
+x = rand(10000)
+L, FL = dfa(x)
+ployfit(log10(L), log10(FL))  # the last element is scaling exponent
+loglog(L, FL, "o")
+```
+You can also specify the following key arguments:
+
+* **order**:  the order of the polynomial fit. Default: `1`.
 * **overlap**:  the overlap of blocks in partitioning the time data expressed as a fraction in [
 0,1). A positive overlap will slow down the calculations slightly with the (possible)
-effect of generating less biased results. Default: 0
+effect of generating less biased results. Default: `0`.
+* **boxmax**: an integer denoting the maximum block size to use in partitioning the data. Default:
+`div(length(x), 2)`.
+* **boxmin**: an integer denoting the minimum block size to use in partitioning the data. Default: `2*(order+1)`.
+* **boxratio**: the ratio of successive boxes. This argument is used as an input to the logScale
+function. Default: `2`.
 
+To perform DFA on x with boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5:
+```
+L1, FL1 = dfa(x, boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5)
+polyfit(log10(L1), log10(FL1))
+loglog(L1, FL1)
+```
 
+## References
+* Peng C-K, Buldyrev SV, Havlin S, Simons M, Stanley HE, and Goldberger AL (1994), Mosaic
+organization of DNA nucleotides, Physical Review E, 49, 1685–1689.
+* Peng C-K, Havlin S, Stanley HE, and Goldberger AL (1995), Quantification of scaling exponents
+and crossover phenomena in nonstationary heartbeat time series, Chaos, 5, 82–87.
+* Goldberger AL, Amaral LAN, Glass L, Hausdorff JM, Ivanov PCh, Mark RG, Mietus JE, Moody
+GB, Peng C-K, Stanley HE (2000, June 13), PhysioBank, PhysioToolkit, and Physionet: Components
+of a New Research Resource for Complex Physiologic Signals, Circulation, 101(23), e215-
+e220.
