@@ -1,7 +1,7 @@
-# DFA.jl: Detrended fluctuation analysis (DFA) in Julia
+# DFA.jl: Detrended fluctuation analysis in Julia
 =======
 ## Introduction
-The DFA package provides tools to perform a detrended fluctuation analysis (DFA) and estimates the scaling exponent from the results. DFA is used to characterize long memory dependence in stochastic fractal time series.
+The DFA package provides tools to perform a [detrended fluctuation analysis (DFA)](http://en.wikipedia.org/wiki/Detrended_fluctuation_analysis) and estimates the scaling exponent from the results. DFA is used to characterize long memory dependence in stochastic fractal time series.
 
 ## Install
 `Pkg.clone("git@github.com:afternone/DFA.jl.git")`
