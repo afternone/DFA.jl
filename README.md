@@ -4,7 +4,8 @@
 The DFA package provides tools to perform a [detrended fluctuation analysis (DFA)](http://en.wikipedia.org/wiki/Detrended_fluctuation_analysis) and estimates the scaling exponent from the results. DFA is used to characterize long memory dependence in stochastic fractal time series.
 
 ## Install
-`Pkg.clone("git@github.com:afternone/DFA.jl.git")`
+To install the package:
+`julia> Pkg.clone("git@github.com:afternone/DFA.jl.git")`
 
 ## Usage Examples
 We'll perform a DFA and estimates the scaling exponent for a random time series.
@@ -13,9 +14,9 @@ using DFA
 using PyPlot
 
 x = rand(10000)
-L, FL = dfa(x)
-ployfit(log10(L), log10(FL))  # the last element is scaling exponent
-loglog(L, FL, "o")
+n, Fn = dfa(x)
+ployfit(log10(n), log10(Fn))  # the last element is scaling exponent
+loglog(n, Fn, "o")
 ```
 You can also specify the following key arguments:
 
@@ -31,9 +32,9 @@ function. Default: `2`.
 
 To perform a DFA on x with boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5:
 ```
-L1, FL1 = dfa(x, boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5)
-polyfit(log10(L1), log10(FL1))
-loglog(L1, FL1)
+n1, Fn1 = dfa(x, boxmax=1000, boxmin=4, boxratio=1.2, overlap=0.5)
+polyfit(log10(n1), log10(Fn1))
+loglog(n1, Fn1)
 ```
 
 ## References
