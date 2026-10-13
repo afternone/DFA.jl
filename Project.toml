@@ -1,0 +1,14 @@
+name = "DFA"
+uuid = "2556a7c9-976d-46bb-b923-66b4a6f0a5bd"
+authors = ["afternone", "Alberto Barradas <abcsds@gmail.com>"]
+version = "v1.0.0"
+
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

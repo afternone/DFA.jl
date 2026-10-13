@@ -1,2 +1,9 @@
+*.jl.*.cov
 *.jl.cov
 *.jl.mem
+/docs/Manifest.toml
+/docs/build/
+LOG.md
+
+Manifest.toml
+test/Manifest.toml
